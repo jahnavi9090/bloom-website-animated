@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOOM - Grow, Thrive, Bloom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Core Variables */
+        :root {
+            --primary: #6366f1;
+            --secondary: #4f46e5;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gradient: linear-gradient(45deg, var(--primary), var(--secondary));
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .nav-logo i {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-logo:hover i {
+            transform: rotate(45deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            background: var(--gradient);
+        }
+
+        /* Hero Section */
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Update the hero styles */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://cdn.shopify.com/s/files/1/0577/1971/7922/files/night-_blooming-water-lily_480x480.jpg?v=1688375358') center/cover no-repeat;
+            z-index: 1;
+        }
+
+/* Remove the hero-video class and its styles */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 23, 42, 0.8),
+                rgba(15, 23, 42, 0.6)
+            );
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.5s;
+        }
+
+        .hero-description {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.7s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: var(--light);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s forwards 0.9s;
+            transition: var(--transition);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            color: var(--light);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        /* Basic Animations */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#" class="nav-logo">
+            <i class="fas fa-seedling"></i>
+            BLOOM
+        </a>
+        <div class="nav-links">
+            <a href="#features" class="nav-link">Features</a>
+            <a href="#algorithm" class="nav-link">Algorithm</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#download" class="nav-link">Download</a>
+        </div>
+    </nav>
+
+    
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="https://cdn.shopify.com/s/files/1/0577/1971/7922/files/night-_blooming-water-lily_480x480.jpg?v=1688375358" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Grow, Thrive, Bloom</h1>
+            <p class="hero-description">
+                Nourish your soul with curated content designed to inspire personal growth and self-discovery.
+            </p>
+            <a href="#download" class="cta-button">Start Your Journey</a>
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    <!-- Add this after the hero section -->
+<!-- Flower Blooming Video Section -->
+<section class="bloom-video-section">
+    <video class="bloom-video" autoplay loop muted playsinline>
+        <source src="https://cdn.pixabay.com/video/2021/05/13/74044-549754726_large.mp4" type="video/mp4">
+    </video>
+    <div class="bloom-overlay">
+        <h2>Watch Nature's Beauty Unfold</h2>
+        <p>Experience the magical transformation of life</p>
+    </div>
+</section>
+
+<style>
+    /* Flower Blooming Video Section Styles */
+    .bloom-video-section {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+    }
+    
+    .bloom-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .bloom-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+    
+    .bloom-overlay h2 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s forwards 0.5s;
+    }
+    .bloom-overlay p {
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.7s;
+}
+</style>
+    <!-- Updated Features Section -->
+<section id="features" class="features">
+    <div class="section-container">
+        <h2 class="section-title">Why Choose Bloom</h2>
+        <div class="features-grid">
+            <!-- Feature Card 1 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3 class="feature-title">Personal Growth</h3>
+                        <p class="feature-description">
+                            Curated content that nurtures your journey of self-discovery
+                        </p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Personal Growth</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Personalized Growth Path</li>
+                            <li><i class="fas fa-check"></i> Daily Inspiration</li>
+                            <li><i class="fas fa-check"></i> Progress Tracking</li>
+                            <li><i class="fas fa-check"></i> Goal Setting Tools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="feature-title">Mindful Engagement</h3>
+                        <p class="feature-description">
+                            Meaningful interaction over endless scrolling
+                        </p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Mindful Engagement</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Screen Time Awareness</li>
+                            <li><i class="fas fa-check"></i> Mindfulness Reminders</li>
+                            <li><i class="fas fa-check"></i> Focus Mode</li>
+                            <li><i class="fas fa-check"></i> Digital Wellbeing Stats</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3 class="feature-title">Positive Community</h3>
+                        <p class="feature-description">
+                            Connect with like-minded individuals
+                        </p>
+                    </div>
+                    <div class="flip-card-back">
+                        <h3>Positive Community</h3>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Support Groups</li>
+                            <li><i class="fas fa-check"></i> Mentor Matching</li>
+                            <li><i class="fas fa-check"></i> Community Challenges</li>
+                            <li><i class="fas fa-check"></i> Collaborative Projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+/* Features Section Styles */
+.features {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, var(--dark), #1a1f35);
+    position: relative;
+    overflow: hidden;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Flip Card Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.flip-card-front {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.flip-card-back {
+    background: var(--gradient);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--light);
+}
+
+.feature-description {
+    color: var(--light);
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.flip-card-back h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.flip-card-back ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 80%;
+}
+
+.flip-card-back ul li {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.flip-card-back ul li i {
+    color: #4ade80;
+}
+
+/* Hover Effects */
+.flip-card {
+    transition: transform 0.3s ease;
+}
+
+.flip-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .flip-card {
+        height: 350px;
+    }
+}
+</style>
+
+    <!-- Algorithm Section -->
+    <section id="algorithm" class="algorithm">
+        <div class="section-container">
+            <h2 class="section-title">The Empowerment Algorithm</h2>
+            <div class="algorithm-grid">
+                <div class="algorithm-visual">
+                    <!-- Base64 encoded SVG pattern for the background -->
+                    <div class="algorithm-nodes"></div>
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgODAwIDYwMCI+CiAgPHN0eWxlPgogICAgLm5vZGUgeyBmaWxsOiAjNjM2NmYxOyB9CiAgICAubGluayB7IHN0cm9rZTogIzRmNDZlNTsgc3Ryb2tlLXdpZHRoOiAyOyB9CiAgICAucHVsc2UgeyBhbmltYXRpb246IHB1bHNlIDJzIGluZmluaXRlOyB9CiAgICBAa2V5ZnJhbWVzIHB1bHNlIHsKICAgICAgMCUgeyBvcGFjaXR5OiAxOyB9CiAgICAgIDUwJSB7IG9wYWNpdHk6IDAuNTsgfQogICAgICAxMDAlIHsgb3BhY2l0eTogMTsgfQogICAgfQogIDwvc3R5bGU+CiAgPGcgY2xhc3M9Im5ldHdvcmsiPgogICAgPCEtLSBDb25uZWN0aW9uIExpbmVzIC0tPgogICAgPGxpbmUgY2xhc3M9ImxpbmsiIHgxPSIyMDAiIHkxPSIzMDAiIHgyPSI0MDAiIHkyPSIzMDAiIC8+CiAgICA8bGluZSBjbGFzcz0ibGluayIgeDE9IjQwMCIgeTE9IjMwMCIgeDI9IjYwMCIgeTI9IjMwMCIgLz4KICAgIDxsaW5lIGNsYXNzPSJsaW5rIiB4MT0iNDAwIiB5MT0iMzAwIiB4Mj0iNDAwIiB5Mj0iMTUwIiAvPgogICAgPGxpbmUgY2xhc3M9ImxpbmsiIHgxPSI0MDAiIHkxPSIzMDAiIHgyPSI0MDAiIHkyPSI0NTAiIC8+CiAgICAKICAgIDwhLS0gTm9kZXMgLS0+CiAgICA8Y2lyY2xlIGNsYXNzPSJub2RlIHB1bHNlIiBjeD0iMjAwIiBjeT0iMzAwIiByPSIyMCIgLz4KICAgIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjMwIiAvPgogICAgPGNpcmNsZSBjbGFzcz0ibm9kZSBwdWxzZSIgY3g9IjYwMCIgY3k9IjMwMCIgcj0iMjAiIC8+CiAgICA8Y2lyY2xlIGNsYXNzPSJub2RlIiBjeD0iNDAwIiBjeT0iMTUwIiByPSIyMCIgLz4KICAgIDxjaXJjbGUgY2xhc3M9Im5vZGUiIGN4PSI0MDAiIGN5PSI0NTAiIHI9IjIwIiAvPgogIDwvZz4KPC9zdmc+" 
+                         alt="Algorithm Visualization" 
+                         class="algorithm-image">
+                    <div class="algorithm-overlay">
+                        <h3>Empowerment Algorithm</h3>
+                        <p>Our intelligent system learns from positive engagement patterns to deliver meaningful content that helps you grow.</p>
+                    </div>
+                </div>
+                <div class="algorithm-content">
+                    <div class="algorithm-features">
+                        <div class="algorithm-feature">
+                            <i class="fas fa-brain"></i>
+                            <span>Smart Content Curation</span>
+                        </div>
+                        <div class="algorithm-feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Growth Analytics</span>
+                        </div>
+                        <div class="algorithm-feature">
+                            <i class="fas fa-heart"></i>
+                            <span>Personalized Journey</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<style>
+/* Features Section Styles */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    height: 400px;
+    perspective: 1000px;
+    margin: 20px 0;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flip-card-front {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.flip-card-back {
+    background: var(--gradient);
+    transform: rotateY(180deg);
+}
+
+/* Algorithm Section Styles */
+.algorithm-visual {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.algorithm-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: transform 0.3s ease;
+}
+
+.algorithm-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,rgba(99, 102, 241, 0.3),
+        rgba(79, 70, 229, 0.3)
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    text-align: center;
+}
+
+.algorithm-nodes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="3" fill="%236366f1"/></svg>');
+    animation: floatNodes 20s linear infinite;
+}
+
+@keyframes floatNodes {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+    100% {
+        transform: translateY(0) rotate(360deg);
+    }
+}
+
+
+
+.flip-card-back h3 {
+    color: white;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.flip-card-back ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+
+.flip-card-back ul li {
+    margin: 1rem 0;
+    color: white;
+}
+
+.flip-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.flip-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* Algorithm Visualization */
+.algorithm-visual {
+    position: relative;
+    height: 400px;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="90" fill="none" stroke="%236366f1" stroke-width="4"/><path d="M100,10 C150,10 190,50 190,100 C190,150 150,190 100,190 C50,190 10,150 10,100 C10,50 50,10 100,10" fill="none" stroke="%234f46e5" stroke-width="4"/></svg>') center/contain no-repeat;
+    animation: rotateVisual 20s linear infinite;
+}
+
+@keyframes rotateVisual {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.features {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, var(--dark), #1a1f35);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card:hover::before {
+    opacity: 0.1;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.feature-description {
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+/* Algorithm Section Styles */
+.algorithm {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #1a1f35, var(--dark));
+    position: relative;
+}
+
+.algorithm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.algorithm-visual {
+    position: relative;
+    height: 400px;
+}
+
+.algorithm-circle {
+    width: 300px;
+    height: 300px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: rotate 20s linear infinite;
+}
+
+.algorithm-paths {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.algorithm-feature {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.algorithm-feature i {
+    color: var(--primary);
+}
+
+/* Floating Elements Animation */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .algorithm-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+<!-- Add this before the closing </body> tag -->
+
+<div class="bloom-container"></div>
+<div class="particle-container"></div>
+
+<style>
+/* Bloom Effects */
+.bloom-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.bloom {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.bloom-center {
+    width: 20px;
+    height: 20px;
+    background: var(--gradient);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bloom-petal {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: 50% 50% 0 50%;
+    transform-origin: bottom right;
+    opacity: 0;
+    filter: blur(2px);
+}
+
+/* Particle Effects */
+.particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.particle {
+    position: absolute;
+    background: var(--gradient);
+    border-radius: 50%;
+    opacity: 0.5;
+    filter: blur(1px);
+}
+
+/* Animation Keyframes */
+@keyframes bloomPetal {
+    0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes particleFade {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+</style>
+
+<script>
+class BloomEffect {
+    constructor() {
+        this.container = document.querySelector('.bloom-container');
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() < 0.1) { // 10% chance to create bloom on mouse move
+                this.createBloom(e.clientX, e.clientY);
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            this.createBloom(e.clientX, e.clientY, true);
+        });
+
+        // Create random blooms periodically
+        setInterval(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            this.createBloom(x, y);
+        }, 3000);
+    }
+
+    createBloom(x, y, isLarge = false) {
+        const bloom = document.createElement('div');
+        bloom.className = 'bloom';
+        bloom.style.left = `${x}px`;
+        bloom.style.top = `${y}px`;
+
+        const center = document.createElement('div');
+        center.className = 'bloom-center';
+        bloom.appendChild(center);
+
+        const petalCount = isLarge ? 12 : 8;
+        const scale = isLarge ? 1.5 : 1;
+
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'bloom-petal';
+            petal.style.transform = `rotate(${(360 / petalCount) * i}deg) scale(${scale})`;
+            petal.style.animation = `bloomPetal 1.5s ease-out ${i * 0.1}s forwards`;
+            bloom.appendChild(petal);
+        }
+
+        this.container.appendChild(bloom);
+        setTimeout(() => bloom.remove(), 2000);
+    }
+}
+
+class ParticleSystem {
+    constructor() {
+        this.container = document.querySelector('.particle-container');
+        this.particles = [];
+        this.init();
+    }
+
+    init() {
+        for (let i = 0; i < 50; i++) {
+            this.createParticle();
+        }
+        this.animate();
+    }
+
+    createParticle() {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 5 + 2;
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        
+        this.container.appendChild(particle);
+        this.particles.push({
+            element: particle,
+            x,
+            y,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2
+        });
+    }
+
+    animate() {
+        this.particles.forEach(particle => {
+            particle.x += particle.vx;
+            particle.y += particle.vy;
+
+            // Bounce off walls
+            if (particle.x < 0 || particle.x > window.innerWidth) particle.vx *= -1;
+            if (particle.y < 0 || particle.y > window.innerHeight) particle.vy *= -1;
+
+            particle.element.style.transform = `translate(${particle.x}px, ${particle.y}px)`;
+        });
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// Initialize effects
+document.addEventListener('DOMContentLoaded', () => {
+    new BloomEffect();
+    new ParticleSystem();
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature-card, .algorithm-feature').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
+<!-- Add these sections before the closing </body> tag -->
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="about-grid">
+                <div class="about-content">
+                    <p class="about-text">
+                        We're reshaping social media to prioritize your well-being and personal growth. Our platform encourages meaningful engagement over endless scrolling, helping you find inspiration and take action in your real life.
+                    </p>
+                    <div class="stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">87%</span>
+                            <span class="stat-label">Users Report Improved Well-being</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2.5x</span>
+                            <span class="stat-label">More Meaningful Interactions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15M+</span>
+                            <span class="stat-label">Inspired Actions Taken</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual">
+                    <div class="growth-visualization"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download">
+        <div class="section-container">
+            <h2 class="section-title">Start Your Journey Today</h2>
+            <div class="download-content">
+                <p class="download-text">
+                    Join our community of mindful users who are choosing to bloom and grow together.
+                </p>
+                <div class="store-buttons">
+                    <a href="#" class="store-button">
+                        <i class="fab fa-apple"></i>
+                        <span>
+                            Download on the<br>
+                            <strong>App Store</strong>
+                        </span>
+                    </a>
+                    <a href="#" class="store-button">
+                        <i class="fab fa-google-play"></i>
+                        <span>
+                            Get it on<br>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="download-background"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="section-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="footer-logo">
+                        <i class="fas fa-seedling"></i>
+                        BLOOM
+                    </a>
+                    <p class="footer-tagline">Grow, Thrive, Bloom</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <a href="#">About Us</a>
+                        <a href="#">Careers</a>
+                        <a href="#">Contact</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <a href="#">Blog</a>
+                        <a href="#">Support</a>
+                        <a href="#">Community</a>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                        <a href="#">Guidelines</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Bloom. All rights reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<style>
+/* About Section Styles */
+.about {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, var(--dark), #1a1f35);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Download Section Styles */
+.download {
+    padding: 100px 0;
+    background: linear-gradient(to bottom, #1a1f35, var(--dark));
+    position: relative;
+    overflow: hidden;
+}
+
+.download-content {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.download-text {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.store-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.store-button {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--light);
+    transition: var(--transition);
+}
+
+.store-button:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.store-button i {
+    font-size: 2rem;
+}
+
+/* Footer Styles */
+.footer {
+    padding: 100px 0 30px;
+    background: var(--dark);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--light);
+    text-decoration: none;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.footer-column h3 {
+    margin-bottom: 1.5rem;
+    color: var(--primary);
+}
+
+.footer-column a {
+    display: block;
+    color: var(--light);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.footer-column a:hover {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: var(--light);
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-grid,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+
+    .store-buttons {
+        flex-direction: column;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
+</style>
+
+<script>
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', () => {
+    // Animate statistics when in view
+    const stats = document.querySelectorAll('.stat-number');
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px'
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateNumber(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    stats.forEach(stat => statsObserver.observe(stat));
+
+    function animateNumber(element) {
+        const target = parseFloat(element.textContent);
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const animate = () => {
+            current += step;
+            if (current < target) {
+                element.textContent = current.toFixed(1) + (element.textContent.includes('%') ? '%' : '');
+                requestAnimationFrame(animate);
+            } else {
+                element.textContent = target + (element.textContent.includes('%') ? '%' : '');
+            }
+        };
+
+        animate();
+    }
+});
+</script>
+<script>
+    // Add this to your existing JavaScript
+    document.addEventListener('DOMContentLoaded', () => {
+        // Flip card functionality
+        const flipCards = document.querySelectorAll('.flip-card');
+        
+        flipCards.forEach(card => {
+            const buttons = card.querySelectorAll('.flip-button');
+            
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    card.classList.toggle('flipped');
+                });
+            });
+        });
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const flipCards = document.querySelectorAll('.flip-card');
+        
+        flipCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('flipped');
+            });
+            
+            // Prevent flip on button click
+            const buttons = card.querySelectorAll('.flip-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    card.classList.toggle('flipped');
+                });
+            });
+        });
+    
+        // Add hover effect to algorithm visualization
+        const algoImage = document.querySelector('.algorithm-image');
+        if(algoImage) {
+            algoImage.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = e.target.getBoundingClientRect();
+                const x = (e.clientX - left) / width;
+                const y = (e.clientY - top) / height;
+                
+                const xOffset = (x - 0.5) * 20;
+                const yOffset = (y - 0.5) * 20;
+                
+                e.target.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+            
+            algoImage.addEventListener('mouseleave', () => {
+                algoImage.style.transform = 'translate(0, 0)';
+            });
+        }
+    });
+    </script>
+</body>
+</html>
